@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/bootstrap.js') }}"></script>
+    <title>Shortdiary List</title>
+    {% endblock %}
+  </head>
+  <body>
+  <div class="container theme-showcase" role="main">
+    <div class="page-header">
+          <h1>Tagebuch <small>gehostet bei <img src="{{ url_for('static', filename='img/sdlogo.png') }}" alt="shortdiary.me" height="30"></small></h1>
+    </div>
+    <div id="content">{% block content %}{% endblock %}</div>
+  </div>
+  </body>
+</html>

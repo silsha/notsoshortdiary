@@ -1,0 +1,4 @@
+Flask>=0.10
+requests>=2.2
+python-dateutil>=2.2
+gunicorn>=0.18
