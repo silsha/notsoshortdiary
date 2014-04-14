@@ -16,8 +16,7 @@ with open('password', 'r') as pwfile:
 
 def index():
 	r = requests.get('https://shortdiary.me/api/v1/posts/', auth=(username, password))
-	posts = filter(lambda p: p['public'], r.json())
-	return render_template("index.html", posts=posts)
+	return render_template("index.html", posts=r.json())
 
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date, fmt=None):

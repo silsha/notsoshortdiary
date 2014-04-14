@@ -6,23 +6,28 @@
 				<h3 class="panel-title"><span class="glyphicon glyphicon-calendar"></span>{{ post.date|strftime }} (<a href='https://shortdiary.me/posts/{{post.id}}'>Auf Shortdiary zeigen</a>)</h3>
 			</div>
   			<div class="panel-body">
-	  			<div class="row">
-	  				<div class="col-md-8">
-						{{post.public_text|urlize|linebreaks}}
+				{% if post.public %}
+		  			<div class="row">
+		  				<div class="col-md-8">
+							{{post.public_text|urlize|linebreaks}}
+		  					</div>
+		  				<div class="col-md-4">	
+		  					{% if post.location_lat %}
+		  					<img src="http://maps.googleapis.com/maps/api/staticmap?center={{post.location_lat}},{{post.location_lon}}&zoom=13&size=350x300&maptype=roadmap&markers=color:blue%7Clabel:%7C{{post.location_lat}},{{post.location_lon}}&sensor=false">
+		  					{% endif %}
 		  				</div>
-		  			<div class="col-md-4">	
-		  				{% if post.location_lat %}
-		  				<img src="http://maps.googleapis.com/maps/api/staticmap?center={{post.location_lat}},{{post.location_lon}}&zoom=13&size=350x300&maptype=roadmap&markers=color:blue%7Clabel:%7C{{post.location_lat}},{{post.location_lon}}&sensor=false">
-		  				{% endif %}
 		  			</div>
-		  		</div>
-		  		{% if post.image %}
-		  		<div class="row">
-		  			<div class="col-md-12">
-		  				<img class="img-responsive" src="https://asset.shortdiary.me/{{post.image}}">
+		  			{% if post.image %}
+		  			<div class="row">
+		  				<div class="col-md-12">
+		  					<img class="img-responsive" src="https://asset.shortdiary.me/{{post.image}}">
+		  				</div>
 		  			</div>
-		  		</div>
-		  		{% endif %}
+		  			{% endif %}
+				{% else %}
+					<span class="glyphicon glyphicon-lock"></span>
+					Dieser Post ist nicht Ã¶ffentlich. Falls er von dir ist, kannst du ihn dir Ãauf Shortdiary ansehe
+				{% endif  %}
 	  		</div>
 		</div>
 		{% endfor %}
